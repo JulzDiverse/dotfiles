@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Hub
+eval "$(hub alias -s)"
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
+
+alias gitpr="checkout-pr"
+
+git-empty-branch() {
+  git checkout --orphan "$1"
+  git rm -rf .
+}
+
+checkout-pr() {
+  hub pr checkout "$1" "$2"
+}

@@ -1,0 +1,163 @@
+#!/bin/bash
+
+alias watch="watch "
+
+# --- get
+alias kget="kubectl get"
+alias kg="kget"
+
+alias kpods="get-pods"
+alias kgp="kubectl get pods"
+alias kgetp="kubectl get pods"
+alias kpodsall="kubectl get pods --all-namespaces"
+
+alias kgd="kubectl get deployments"
+alias kgetd="kubectl get deployments"
+alias kdeps="kubectl get deployments"
+
+alias kgst="kubectl get statefulsets"
+alias kgetst="kubectl get statefulsets"
+alias kstates="kubectl get statefulsets"
+
+alias kgse="kubectl get services"
+alias kgetse="kubectl get services"
+alias ksers="kubectl get services"
+
+alias kgsto="kubectl get storageclass"
+alias kgetsto="kubectl get storageclass"
+alias kstorages="kubectl get storageclass"
+
+alias kns="kubectl get namespace"
+
+alias kall="kubectl get all"
+
+alias kjobs="kubectl get job"
+alias kgj="kubectl get job"
+alias kgetj="kubectl get job"
+
+alias ksecs="kubectl get secrets"
+alias kgsec="kubectl get secrets"
+alias kgetsec="kubectl get secrets"
+
+
+# --- describe
+alias kdes="kubectl describe"
+alias kd="kubectl describe"
+
+alias kdesp="kdes pod"
+alias kdp="kdes pod"
+
+alias kdesd="kdes deployment"
+alias kdd="kdes deployment"
+
+alias kdesse="kdes service"
+alias kdse="kdes service"
+
+alias kdesst="kdes statefulset"
+alias kdst="kdes statefulset"
+
+alias kdessto="kdes storageclass"
+alias kdsto="kdessto"
+
+alias kdessec="kdes secret"
+alias kdsec="kdessec"
+
+alias kdesi="kdes ingress"
+alias kdi="kdesi"
+
+# --- config
+alias kconf="kubectl config view"
+alias kconff="kconf --flatten"
+
+# --- edit
+alias kedit="KUBE_EDITOR=/usr/bin/vim kubectl edit"
+alias ke="KUBE_EDITOR=/usr/bin/vim kubectl edit"
+
+alias keditp="kedit pod"
+alias kep="kedit pod"
+
+alias keditd="kedit deployment"
+alias ked="kedit deployment"
+
+alias keditst="kedit statefulset"
+alias kest="kedit statefulset"
+
+alias keditse="kedit service"
+alias kese="kedit service"
+
+alias kediti="kedit ingress"
+alias kei="kedit ingress"
+
+alias keditj="kedit job"
+alias kej="kedit job"
+
+alias keditsc="kedit storageclass"
+alias kesc="kedit storageclass"
+
+# delete
+alias kdel="kubectl delete"
+alias kdelp="kdel pod"
+alias kdeld="kdel deployment"
+alias kdelse="kdel service"
+alias kdelst="kdel statefulset"
+alias kdelsec="kdel secret"
+alias kdelf="kdel -f"
+alias kdelj="kdel job"
+
+alias kwho="kubectl config current-context"
+# exec
+alias kexec="executor"
+
+# set space
+alias kspace="set-space"
+
+# apply
+alias kapply="kubectl apply -f"
+
+# logs
+alias klogs="kubectl logs"
+alias klogsf="kubectl logs -f"
+
+# watch
+alias wkpods="watch kgp"
+alias wkjobs="watch kjobs"
+alias wkgd="watch kgd"
+alias wkgst="watch kgst"
+alias wkns="watch kns"
+
+alias knuke="nuke"
+
+
+alias keirini="watch-eirini"
+
+alias khostpath="create-hostpath-provisioner"
+
+executor(){
+	kubectl exec -it "$1" -- /bin/bash
+}
+
+set-space(){
+  kubectl config set-context "$(kubectl config current-context)" --namespace="$1"
+}
+
+nuke(){
+	kubectl delete namespace "$1"; helm del "$1" --purge
+}
+
+watch-eirini(){
+  watch 'kubectl get pods --all-namespaces | egrep -h "scf|eirini"'
+}
+
+get-pods(){
+  if [ -z "$1" ]; then
+    kubectl get pods
+  else
+    kubectl get pods -n "$1"
+  fi
+}
+
+create-hostpath-provisioner() {
+  kubectl create -f https://raw.githubusercontent.com/MaZderMind/hostpath-provisioner/master/manifests/storageclass.yaml
+  kubectl create -f https://raw.githubusercontent.com/MaZderMind/hostpath-provisioner/master/manifests/rbac.yaml
+  kubectl create -f https://raw.githubusercontent.com/MaZderMind/hostpath-provisioner/master/manifests/deployment.yaml
+}

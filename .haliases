@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# This is a collection of helm aliases
+
+alias hstatus='helm status '
+
