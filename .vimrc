@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
     Plug 'scrooloose/nerdtree'
-    Plug 'fatih/vim-go', { 'tag': '*' }
+    Plug 'fatih/vim-go', { 'tag': '*', 'do': ':GoUpdateBinaries' }
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'trayo/vim-ginkgo-snippets'
     Plug 'trayo/vim-gomega-snippets'
@@ -9,6 +9,9 @@ call plug#begin('~/.vim/plugged')
     Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim' 
     Plug 'w0rp/ale'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'vmchale/dhall-vim'
+    Plug 'neoclide/coc.nvim', {'branch':'release' }
 
 call plug#end()
 
@@ -27,7 +30,6 @@ set number
 ino jk <esc>
 ino ;; <esc>
 
-vno jk <esc>
 vno ;; <esc>
 
 "ctrl+c copies to clipboard
