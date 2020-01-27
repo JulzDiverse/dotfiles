@@ -127,6 +127,8 @@ alias wkns="watch kns"
 
 alias knuke="nuke"
 
+alias ktop="kubectl top pods"
+alias wktop="watch ktop"
 
 alias keirini="watch-eirini"
 
