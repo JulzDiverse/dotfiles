@@ -5,8 +5,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'trayo/vim-ginkgo-snippets'
     Plug 'trayo/vim-gomega-snippets'
-    Plug 'zirrostig/vim-schlepp'
-    Plug '/usr/local/opt/fzf'
     Plug 'junegunn/fzf.vim' 
     Plug 'w0rp/ale'
     Plug 'tpope/vim-commentary' 
@@ -14,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'neoclide/coc.nvim', {'branch':'release' }
     Plug 'jremmen/vim-ripgrep'
     Plug 'kaicataldo/material.vim'
+    Plug 'christoomey/vim-system-copy'
 
 call plug#end()
 
@@ -36,7 +35,7 @@ ino ;; <esc>
 vno ;; <esc>
 
 "ctrl+c copies to clipboard
-map <C-q> "*y<CR>
+map <C-q> "+y<CR>
 
 "Write on enter
 map <CR> :write<CR>
